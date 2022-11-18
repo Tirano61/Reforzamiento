@@ -12,3 +12,5 @@ export const useCounter = (inicial: number = 10) => {
         acumular
     }
 }
+
+

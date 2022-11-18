@@ -4,11 +4,12 @@
 //import { ContadorConhook } from "./typescript/Contador";
 //import { Login } from "./typescript/Login";
 //import { Contador } from "./typescript/Contador";
+//import { Usuarios } from "./typescript/Usuarios";
 
-import { Usuarios } from "./typescript/Usuarios";
+import { Formularios } from "./typescript/Formularios";
 
 
-export const App = () => {
+const App = () => {
   return (
     <div className='mt-2'>
       <h1>Introduccion a React</h1>
@@ -22,7 +23,8 @@ export const App = () => {
       {/* <ContadorConhook/> */}
       {/* <hr /> */}
       {/* <Login /> */}
-      <Usuarios />
+      {/* <Usuarios /> */}
+      <Formularios />
     </div>
   )
 }

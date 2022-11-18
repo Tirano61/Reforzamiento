@@ -1,22 +1,12 @@
-import { useEffect, useState } from 'react';
-import { reqResApi } from '../api/reqRes';
+
 import { ReqResListado, Usuario } from '../interfaces/reqRes';
+import { useUsuarios } from '../hooks/useUsuarios';
 
 
 export const Usuarios = () => {
 
-  const [usuariosState, setUsuarios] = useState<Usuario[]>([])
-
-  useEffect(() => {
-    
-      reqResApi.get<ReqResListado>('/users')
-          .then(resp => {
-              console.log(resp.data.data);
-              setUsuarios(resp.data.data);
-          })
-          .catch( console.log );
-    
-  }, [])
+  const { usuarios, botonAnterior, botonSigiente  } = useUsuarios();
+  
   
   const renderItem = ( usuario: Usuario ) => {
     return(
@@ -25,11 +15,13 @@ export const Usuarios = () => {
           <img src={ usuario.avatar } alt= { usuario.first_name } 
             style={{ 
               width: 50,
-              borderRadius: 100
+              borderRadius: 20,
+              borderWidth: 10,
             }}
           />
         </td>
         <td> { usuario.first_name } </td>
+        <td> { usuario.last_name } </td>
         <td> { usuario.email } </td>
       </tr>
     )
@@ -43,15 +35,27 @@ export const Usuarios = () => {
           <tr>
             <th>Avatar</th>
             <th>Nombre</th>
+            <th>Apellido</th>
             <th>Email</th>
           </tr>
         </thead>
         <tbody>
           {
-            usuariosState.map( renderItem )
+            usuarios.map( usuario => renderItem(usuario) )
           }
         </tbody>
       </table>
+      <button className='btn btn-danger'
+        onClick={ botonAnterior }
+      >
+        Anterior
+      </button>
+      &nbsp;
+      <button className='btn btn-primary'
+        onClick={ botonSigiente }
+      >
+        Siguiente
+      </button>
     </>
   )
 }
